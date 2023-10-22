@@ -13,6 +13,7 @@ struct VideoResult: Identifiable {
     var url: String
     var isDownloading: Bool = false
     var isDownloaded: Bool = false
+    var localPath: URL?
 }
 
 extension VideoResult: Codable {

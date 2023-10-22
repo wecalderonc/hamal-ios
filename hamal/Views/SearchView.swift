@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SearchView: View {
+    
     @State private var query: String = ""
     @State private var videoResults: [VideoResult] = []
+    @ObservedObject var audioPlayerManager: AudioPlayerManager
+    @State private var showPlayer: Bool = false
     
     var apiService = ApiService()
     
@@ -43,9 +47,16 @@ struct SearchView: View {
                     Spacer()
                     if video.isDownloading {
                         ProgressView()  // Shows a loading animation
-                    } else if video.isDownloaded {
+                    } else if video.isDownloaded || isSongDownloaded(title: video.title) {
                         Image(systemName: "play.circle.fill")  // Shows a play icon
                             .font(.system(size: 24))
+                            .onTapGesture {
+                                if let url = getLocalSongURL(title: video.title) {
+                                    audioPlayerManager.loadAudio(from: url)
+                                    audioPlayerManager.play()
+                                    showPlayer = true
+                                }
+                            }
                     } else {
                         Button(action: {
                             downloadVideo(video: video)
@@ -56,6 +67,18 @@ struct SearchView: View {
                     }
                 }
             }
+            Spacer() // Esto asegura que el reproductor se coloque en la parte inferior
+            
+//            if showPlayer {
+//                PlayerView(audioPlayerManager: audioPlayerManager)
+//                    .onChange(of: audioPlayerManager.songHasFinished, perform: { value in
+//                        if value == true {
+//                            showPlayer = false
+//                            audioPlayerManager.songHasFinished = false  // Reset this after using it
+//                        }
+//                    })
+//            }
+            
         }
         .padding()
     }
@@ -66,7 +89,7 @@ struct SearchView: View {
         if let index = videoResults.firstIndex(where: { $0.id == video.id }) {
             videoResults[index].isDownloading = true
         }
-
+        
         apiService.downloadVideo(requestBody: DownloadRequestBody(url: video.url, title: video.title)) { data in
             // Once download completes, update states accordingly
             if let index = self.videoResults.firstIndex(where: { $0.id == video.id }) {
@@ -74,7 +97,7 @@ struct SearchView: View {
                 
                 if let data = data {
                     videoResults[index].isDownloaded = true
-                    saveToDisk(data: data, title: video.title)
+                    saveToDisk(data: data, video: video)
                 } else {
                     // Handle error
                     print("Error downloading video")
@@ -82,25 +105,47 @@ struct SearchView: View {
             }
         }
     }
-
-    func saveToDisk(data: Data, title: String) {
+    
+    func saveToDisk(data: Data, video: VideoResult) {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         if let documentsDirectory = paths.first {
-            let fileURL = documentsDirectory.appendingPathComponent(title).appendingPathExtension("mp3") // Change "mp4" to the correct file format if different
+            let fileURL = documentsDirectory.appendingPathComponent(video.title).appendingPathExtension("mp3")
             do {
                 try data.write(to: fileURL)
-                print("Video saved at: \(fileURL)")
+                print("Song saved at: \(fileURL)")
+                if let index = videoResults.firstIndex(where: { $0.title == video.title }) {
+                    videoResults[index].isDownloaded = true
+                }
             } catch {
                 // Handle the error
-                print("Error saving video: \(error)")
+                print("Error saving song: \(error)")
             }
         }
+    }
+    
+    func isSongDownloaded(title: String) -> Bool {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let documentsDirectory = paths.first {
+            let fileURL = documentsDirectory.appendingPathComponent(title).appendingPathExtension("mp3")
+            return FileManager.default.fileExists(atPath: fileURL.path)
+        }
+        return false
+    }
+    
+    func getLocalSongURL(title: String) -> URL? {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let documentsDirectory = paths.first {
+            let fileURL = documentsDirectory.appendingPathComponent(title).appendingPathExtension("mp3")
+            if FileManager.default.fileExists(atPath: fileURL.path) {
+                return fileURL
+            }
+        }
+        return nil
     }
     
 }
 
 
-
-#Preview {
-    SearchView()
-}
+//#Preview {
+//    SearchView()
+//}

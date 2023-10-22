@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BE1909B32AE5C3CF00104D91 /* hamalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909B22AE5C3CF00104D91 /* hamalApp.swift */; };
 		BE1909B52AE5C3CF00104D91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909B42AE5C3CF00104D91 /* ContentView.swift */; };
-		BE1909B72AE5C3CF00104D91 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909B62AE5C3CF00104D91 /* Item.swift */; };
 		BE1909B92AE5C3D100104D91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1909B82AE5C3D100104D91 /* Assets.xcassets */; };
 		BE1909BC2AE5C3D100104D91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1909BB2AE5C3D100104D91 /* Preview Assets.xcassets */; };
 		BE1909C32AE5C7EB00104D91 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909C22AE5C7EB00104D91 /* SearchView.swift */; };
@@ -17,13 +16,14 @@
 		BE1909C72AE5C84A00104D91 /* VideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909C62AE5C84A00104D91 /* VideoResult.swift */; };
 		BE1909C92AE5C86700104D91 /* DownloadRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909C82AE5C86600104D91 /* DownloadRequestBody.swift */; };
 		BE1909CB2AE5C87E00104D91 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909CA2AE5C87E00104D91 /* ApiService.swift */; };
+		BE1909D02AE5CF9B00104D91 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909CF2AE5CF9B00104D91 /* PlayerView.swift */; };
+		BE1909D22AE5D5F900104D91 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1909D12AE5D5F900104D91 /* AudioPlayerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BE1909AF2AE5C3CF00104D91 /* hamal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hamal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE1909B22AE5C3CF00104D91 /* hamalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hamalApp.swift; sourceTree = "<group>"; };
 		BE1909B42AE5C3CF00104D91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		BE1909B62AE5C3CF00104D91 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		BE1909B82AE5C3D100104D91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE1909BB2AE5C3D100104D91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BE1909C22AE5C7EB00104D91 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -31,6 +31,8 @@
 		BE1909C62AE5C84A00104D91 /* VideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResult.swift; sourceTree = "<group>"; };
 		BE1909C82AE5C86600104D91 /* DownloadRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRequestBody.swift; sourceTree = "<group>"; };
 		BE1909CA2AE5C87E00104D91 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		BE1909CF2AE5CF9B00104D91 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		BE1909D12AE5D5F900104D91 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,13 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				BE1909B22AE5C3CF00104D91 /* hamalApp.swift */,
-				BE1909B42AE5C3CF00104D91 /* ContentView.swift */,
-				BE1909B62AE5C3CF00104D91 /* Item.swift */,
-				BE1909C82AE5C86600104D91 /* DownloadRequestBody.swift */,
-				BE1909C22AE5C7EB00104D91 /* SearchView.swift */,
-				BE1909C62AE5C84A00104D91 /* VideoResult.swift */,
-				BE1909C42AE5C80E00104D91 /* DownloadsView.swift */,
-				BE1909CA2AE5C87E00104D91 /* ApiService.swift */,
+				BE1909CE2AE5CAFF00104D91 /* Services */,
+				BE1909CC2AE5CA9D00104D91 /* Models */,
+				BE1909CD2AE5CAD000104D91 /* Views */,
 				BE1909B82AE5C3D100104D91 /* Assets.xcassets */,
 				BE1909BA2AE5C3D100104D91 /* Preview Content */,
 			);
@@ -83,6 +81,35 @@
 				BE1909BB2AE5C3D100104D91 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BE1909CC2AE5CA9D00104D91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE1909C62AE5C84A00104D91 /* VideoResult.swift */,
+				BE1909C82AE5C86600104D91 /* DownloadRequestBody.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BE1909CD2AE5CAD000104D91 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE1909B42AE5C3CF00104D91 /* ContentView.swift */,
+				BE1909C22AE5C7EB00104D91 /* SearchView.swift */,
+				BE1909C42AE5C80E00104D91 /* DownloadsView.swift */,
+				BE1909CF2AE5CF9B00104D91 /* PlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE1909CE2AE5CAFF00104D91 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BE1909CA2AE5C87E00104D91 /* ApiService.swift */,
+				BE1909D12AE5D5F900104D91 /* AudioPlayerManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,10 +185,11 @@
 				BE1909C32AE5C7EB00104D91 /* SearchView.swift in Sources */,
 				BE1909C52AE5C80E00104D91 /* DownloadsView.swift in Sources */,
 				BE1909B52AE5C3CF00104D91 /* ContentView.swift in Sources */,
-				BE1909B72AE5C3CF00104D91 /* Item.swift in Sources */,
+				BE1909D02AE5CF9B00104D91 /* PlayerView.swift in Sources */,
 				BE1909C72AE5C84A00104D91 /* VideoResult.swift in Sources */,
 				BE1909C92AE5C86700104D91 /* DownloadRequestBody.swift in Sources */,
 				BE1909CB2AE5C87E00104D91 /* ApiService.swift in Sources */,
+				BE1909D22AE5D5F900104D91 /* AudioPlayerManager.swift in Sources */,
 				BE1909B32AE5C3CF00104D91 /* hamalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
